@@ -2,7 +2,6 @@ import {inputCheckAttendance} from "../view/inputView.js";
 import {printAttendanceTime} from "../view/outputView.js";
 import {DATE} from "./getDate.js";
 import { appendFile } from 'fs';
-import {getCSVData} from "./getCSVData.js";
 
 async function saveAttendanceData(name, time) {
   const filePath = 'C:/Users/asdf/Desktop/우테코/javascript-attendance-7/public/attendances.csv';

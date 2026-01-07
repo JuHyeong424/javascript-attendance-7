@@ -1,5 +1,6 @@
 import {Console} from "@woowacourse/mission-utils";
 import {DATE} from "../utils/getDate.js";
+import {checkHasName} from "../utils/checkHasName.js";
 
 const checkInputChoice = ['1', '2', '3', '4', 'Q'];
 
@@ -26,6 +27,16 @@ export async function inputChoice() {
 export async function inputCheckAttendance() {
   Console.print('');
   const name = await Console.readLineAsync('닉네임을 입력해 주세요.\n');
+  checkHasName(name);
   const time = await Console.readLineAsync(`등교 시간을 입력해 주세요.\n`);
   return [name, time];
+}
+
+export async function inputEditAttendance() {
+  Console.print('');
+  const name = await Console.readLineAsync('출석을 수정하려는 크루의 닉네임을 입력해 주세요.\n');
+  checkHasName(name);
+  const date = await Console.readLineAsync(`수정하려는 날짜(일)를 입력해 주세요.\n`);
+  const time = await Console.readLineAsync('언제로 변경하겠습니까?\n');
+  return [name, date, time];
 }

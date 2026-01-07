@@ -15,13 +15,13 @@ class App {
         case '1':
           await checkAttendance();
           break;
-        case 2:
+        case '2':
           await editAttendance();
           break;
-        case 3:
+        case '3':
           await checkHistory();
           break;
-        case 4:
+        case '4':
           await checkWarning();
           break;
       }
