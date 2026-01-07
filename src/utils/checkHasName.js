@@ -7,6 +7,10 @@ export function checkHasName(name) {
   if (!extractedData.some(value => value.nickname === name)) {
     throw new Error('[ERROR] 등록되지 않은 닉네임입니다.');
   }
+}
+
+export function checkDuplicationName(name) {
+  const extractedData = getCSVData();
 
   const filterData = extractedData.filter(value => value.nickname === name);
   const dayPart = splitDayData(filterData);

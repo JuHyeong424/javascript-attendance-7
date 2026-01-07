@@ -1,6 +1,6 @@
 import {Console} from "@woowacourse/mission-utils";
 import {DATE} from "../utils/getDate.js";
-import {checkHasName} from "../utils/checkHasName.js";
+import {checkDuplicationName, checkHasName} from "../utils/checkHasName.js";
 import {checkIsCorrectDate, checkIsCorrectTime} from "../utils/checkIsCorrectDay.js";
 import {checkCorrectTIme} from "../utils/checkCorrectTIme.js";
 
@@ -33,6 +33,7 @@ export async function inputCheckAttendance() {
   Console.print('');
   const name = await Console.readLineAsync('닉네임을 입력해 주세요.\n');
   checkHasName(name);
+  checkDuplicationName(name)
   const time = await Console.readLineAsync(`등교 시간을 입력해 주세요.\n`);
   checkCorrectTIme(time);
   return [name, time];
