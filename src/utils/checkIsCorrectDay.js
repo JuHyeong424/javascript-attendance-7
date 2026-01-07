@@ -1,4 +1,5 @@
 import {getCSVData, splitDayData, splitTimeData} from "./getCSVData.js";
+import {checkCorrectTIme} from "./checkCorrectTIme.js";
 
 function getThisData(name) {
   const extractedData = getCSVData();
@@ -14,6 +15,7 @@ export function checkIsCorrectDate(date, name) {
 }
 
 export function checkIsCorrectTime(date, time, name) {
+  checkCorrectTIme(time)
   const filterArray = getThisData(name);
   const [currentHour, currentMinute] = splitTimeData(filterArray, date);
   const [hour, minute] = time.split(':').map(Number);

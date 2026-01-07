@@ -2,6 +2,7 @@ import {Console} from "@woowacourse/mission-utils";
 import {DATE} from "../utils/getDate.js";
 import {checkHasName} from "../utils/checkHasName.js";
 import {checkIsCorrectDate, checkIsCorrectTime} from "../utils/checkIsCorrectDay.js";
+import {checkCorrectTIme} from "../utils/checkCorrectTIme.js";
 
 const checkInputChoice = ['1', '2', '3', '4', 'Q'];
 
@@ -33,6 +34,7 @@ export async function inputCheckAttendance() {
   const name = await Console.readLineAsync('닉네임을 입력해 주세요.\n');
   checkHasName(name);
   const time = await Console.readLineAsync(`등교 시간을 입력해 주세요.\n`);
+  checkCorrectTIme(time);
   return [name, time];
 }
 
