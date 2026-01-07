@@ -24,3 +24,18 @@ export function getCSVData() {
 
   return extractedData;
 }
+
+export function splitDayData(filterArray) {
+  const parts = filterArray.map(value => value.datetime.split(' '));
+  const dayPart = parts.map(value => value[0].split('-')[2]);
+  return [dayPart];
+}
+
+export function splitTimeData(filterArray, date) {
+  const parts = filterArray.map(value => value.datetime.split(' '));
+  const dayPart = parts.map(value => value[0].split('-')[2]);
+  const index = dayPart.indexOf(date.toString().padStart(2,'0'));
+  const timePart = parts.map(value => value[1])[index];
+  const [hour, minute] = timePart.split(':').map(Number);
+  return [hour, minute];
+}
