@@ -6,6 +6,11 @@ export async function printAttendanceTime(time) {
   Console.print(`${DATE.month.toString().padStart(2,'0')}월 ${DATE.date.toString().padStart(2,'0')}일 ${DATE.dayOfWeek} ${time} (출석)`);
 }
 
+export async function printEdit(thisAttendance, thisData, thisDayName, date, time, attendance) {
+  Console.print('');
+  Console.print(`01월 ${date.toString().padStart(2, '0')}일 ${thisDayName} ${thisData} ${thisAttendance} -> ${time} ${attendance} 수정 완료!`);
+}
+
 export async function printAttendanceHistory(str, COUNT, sum, name) {
   Console.print('');
   Console.print(`이번 달 ${name}의 출석 기록입니다.`);

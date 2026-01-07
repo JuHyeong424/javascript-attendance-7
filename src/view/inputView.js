@@ -22,9 +22,9 @@ export async function inputChoice() {
   if ((answer === '1' || answer === '2') && (DATE.dayOfWeek === '토요일' || DATE.dayOfWeek === '일요일')) {
     throw new Error(`[ERROR] ${DATE.month.toString().padStart(2,'0')}월 ${DATE.date.toString().padStart(2,'0')}일 ${DATE.dayOfWeek}은 등교하는 날이 아닙니다.`);
   }
-  if ((answer === '1' || answer === '2') && (DATE.hours < 8 || DATE.hours > 23)) {
-    throw new Error('[ERROR] 캠퍼스 운영 시간에만 출석이 가능합니다.');
-  }
+  // if ((answer === '1' || answer === '2') && (DATE.hours < 8 || DATE.hours > 23)) {
+  //   throw new Error('[ERROR] 캠퍼스 운영 시간에만 출석이 가능합니다.');
+  // }
 
   return answer;
 }
