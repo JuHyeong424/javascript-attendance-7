@@ -16,8 +16,8 @@ export async function inputChoice() {
   if (!checkInputChoice.includes(answer)) {
     throw new Error('[ERROR] 잘못된 형식을 입력하였습니다.');
   }
-  if (DATE.dayOfWeek === '토요일' || DATE.dayOfWeek === '일요일') {
-    throw new Error(`[ERROR] ${DATE.month.toString().padStart(2,'0')}월 ${DATE.date.toString().padStart(2,'0')}일 ${DATE.dayOfWeek}은 등교일이 아닙니다.`);
+  if ((answer === '1' || answer === '2') && DATE.dayOfWeek === '토요일' || DATE.dayOfWeek === '일요일') {
+    throw new Error(`[ERROR] ${DATE.month.toString().padStart(2,'0')}월 ${DATE.date.toString().padStart(2,'0')}일 ${DATE.dayOfWeek}은 등교하는 날이 아닙니다.`);
   }
 
   return answer;

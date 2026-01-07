@@ -16,9 +16,7 @@ async function saveAttendanceData(name, time) {
 }
 
 export async function checkAttendance() {
-  const extractedData = getCSVData();
   const [name, time] = await inputCheckAttendance();
-  // name,${DATE.year}-${DATE.month}-${DATE.date} time
   await saveAttendanceData(name, time);
   await printAttendanceTime(time);
 }
