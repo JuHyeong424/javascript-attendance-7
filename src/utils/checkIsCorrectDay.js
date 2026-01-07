@@ -1,7 +1,7 @@
 import {getCSVData, splitDayData, splitTimeData} from "./getCSVData.js";
 import {checkCorrectTIme} from "./checkCorrectTIme.js";
 
-function getThisData(name) {
+export function getThisData(name) {
   const extractedData = getCSVData();
   return extractedData.filter(value => value.nickname === name);
 }

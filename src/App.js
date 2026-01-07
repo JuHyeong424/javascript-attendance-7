@@ -9,8 +9,9 @@ class App {
   async run() {
     getDate();
     let answer = '';
-    while (answer !== 'Q') {
+    while (answer.toUpperCase() !== 'Q') {
       answer = await inputChoice();
+      if (answer.toUpperCase() === 'Q') break;
       switch(answer) {
         case '1':
           await checkAttendance();
