@@ -4,25 +4,25 @@ import {checkDuplicationName, checkHasName} from "../utils/checkHasName.js";
 import {checkIsCorrectDate, checkIsCorrectTime} from "../utils/checkIsCorrectDay.js";
 import {checkCorrectTIme} from "../utils/checkCorrectTIme.js";
 
-const checkInputChoice = ['1', '2', '3', '4', 'Q'];
+const checkInputChoice = ['1', '2', '3', '4', 'Q', 'q'];
 
 export async function inputChoice() {
-  const answer = await Console.readLineAsync(`
+  const answer = (await Console.readLineAsync(`
     오늘은 ${DATE.month.toString().padStart(2,'0')}월 ${DATE.date.toString().padStart(2,'0')}일 ${DATE.dayOfWeek}입니다. 기능을 선택하세요.
     1. 출석 확인
     2. 출석 수정
     3. 크루별 출석 기록 확인
     4. 제적 위험자 확인
     Q. 종료\n
-  `)
+  `));
 
   if (!checkInputChoice.includes(answer)) {
     throw new Error('[ERROR] 잘못된 형식을 입력하였습니다.');
   }
-  if ((answer === '1' || answer === '2') && DATE.dayOfWeek === '토요일' || DATE.dayOfWeek === '일요일') {
+  if ((answer === '1' || answer === '2') && (DATE.dayOfWeek === '토요일' || DATE.dayOfWeek === '일요일')) {
     throw new Error(`[ERROR] ${DATE.month.toString().padStart(2,'0')}월 ${DATE.date.toString().padStart(2,'0')}일 ${DATE.dayOfWeek}은 등교하는 날이 아닙니다.`);
   }
-  if ((answer === '1' || answer === '2') && DATE.hours < 8 && DATE.hours > 23) {
+  if ((answer === '1' || answer === '2') && (DATE.hours < 8 || DATE.hours > 23)) {
     throw new Error('[ERROR] 캠퍼스 운영 시간에만 출석이 가능합니다.');
   }
 
@@ -48,4 +48,11 @@ export async function inputEditAttendance() {
   const time = await Console.readLineAsync('언제로 변경하겠습니까?\n');
   checkIsCorrectTime(date, time, name);
   return [name, date, time];
+}
+
+export async function inputCheckHistory() {
+  Console.print('');
+  const name = await Console.readLineAsync('닉네임을 입력해 주세요.\n');
+  checkHasName(name);
+  return name;
 }

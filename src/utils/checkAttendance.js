@@ -16,6 +16,6 @@ async function saveAttendanceData(name, time) {
 
 export async function checkAttendance() {
   const [name, time] = await inputCheckAttendance();
-  await saveAttendanceData(name, time);
+  // await saveAttendanceData(name, time);
   await printAttendanceTime(time);
 }
