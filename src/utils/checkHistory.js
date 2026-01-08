@@ -10,7 +10,6 @@ import {printAttendanceHistory} from "../view/outputView.js";
   { date: '2026-01-06', day: '화요일', time: '10:08', attendance: '지각' }
 ]
  */
-const HISTORY = [];
 
 export function getDayName(dateString) {
   const daysOfWeek = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
@@ -45,7 +44,8 @@ function checkAttendance(date) {
   return "출석";
 }
 
-function findHistory(name) {
+export function findHistory(name) {
+  const HISTORY = [];
   const dataArray = getThisData(name);
   const date = dataArray.map(value => value.datetime.split(' '));
   for (let i = 0; i < date.length; i++) {
@@ -63,9 +63,11 @@ function findHistory(name) {
       attendance : date[i][3],
     })
   }
+
+  return HISTORY;
 }
 
-function getHistoryPrint() {
+export async function getHistoryPrint(HISTORY) {
   let str = [];
   for (let i = 1; i < DATE.date; i++) {
     const day = getDayName(`2026-01-${i.toString().padStart(2,'0')}`);
@@ -86,17 +88,17 @@ function getHistoryPrint() {
   return str;
 }
 
-const COUNT = { 출석: 0, 지각: 0, 결석: 0, 대상자: '' };
-
 export async function checkHistory() {
   const name = await inputCheckHistory();
-  findHistory(name);
-  const str = getHistoryPrint();
+  const HISTORY = findHistory(name);
+  const str = await getHistoryPrint(HISTORY);
+  const COUNT = { 출석: 0, 지각: 0, 결석: 0, 대상자: '' };
   for (const value of str) {
     if (value.includes('출석')) COUNT['출석'] += 1;
     if (value.includes('지각')) COUNT['지각'] += 1;
     if (value.includes('결석')) COUNT['결석'] += 1;
   }
   const sum = COUNT['결석'] + COUNT['지각'] / 3;
+  console.log(str);
   await printAttendanceHistory(str, COUNT, sum, name);
 }
