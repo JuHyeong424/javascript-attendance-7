@@ -33,3 +33,18 @@ export async function printAttendanceHistory(str, COUNT, sum, name) {
     Console.print('결석 대상자입니다.');
   }
 }
+
+export async function printWarining(RESULT) {
+  Console.print('');
+  Console.print('제적 위험자 조회 결과');
+  for (const value of RESULT) {
+    let man = '';
+    if (value['대상자'] >= 2) man = '(경고)';
+    if (value['대상자'] >= 3) man = '(면담)';
+    if (value['대상자'] >= 5) man = '(제적)';
+
+    if (value['대상자'] > 2) {
+      Console.print(`- ${value['이름']}: 결석 ${value['결석']}회, 지각 ${value['지각']}회 ${man}`);
+    }
+  }
+}
